@@ -19,15 +19,14 @@ package unit.uk.gov.hmrc.apidocumentation.services
 import org.mockito.Mockito._
 import org.raml.v2.api.model.v10.api.DocumentationItem
 import org.raml.v2.api.model.v10.system.types.AnnotableStringType
-import org.scalatestplus.mockito.MockitoSugar
 import uk.gov.hmrc.apidocumentation.models._
 import uk.gov.hmrc.apidocumentation.services._
-import uk.gov.hmrc.play.test.UnitSpec
 import unit.uk.gov.hmrc.apidocumentation.utils.ApiDefinitionTestDataHelper
+import unit.uk.gov.hmrc.apidocumentation.utils.AsyncApiPlatformSpec
 
 import scala.collection.JavaConversions._
 
-class ServicesSpec extends UnitSpec with MockitoSugar with ApiDefinitionTestDataHelper {
+class ServicesSpec extends AsyncApiPlatformSpec with ApiDefinitionTestDataHelper {
   trait Setup {
     val raml = mock[RAML]
     val (overview, versioning, errors) = (mock[DocumentationItem], mock[DocumentationItem], mock[DocumentationItem])

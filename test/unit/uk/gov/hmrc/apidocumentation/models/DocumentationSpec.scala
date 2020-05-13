@@ -21,9 +21,9 @@ import uk.gov.hmrc.apidocumentation.models.APICategory._
 import uk.gov.hmrc.apidocumentation.models._
 import org.scalatest.prop.TableDrivenPropertyChecks._
 import org.scalatest.prop.Tables.Table
-import uk.gov.hmrc.play.test.UnitSpec
+import unit.uk.gov.hmrc.apidocumentation.utils.ApiPlatformSpec
 
-class DocumentationSpec extends UnitSpec {
+class DocumentationSpec extends ApiPlatformSpec {
 
   "APIVersion.displayedStatus for PUBLIC apis" should {
 

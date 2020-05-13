@@ -27,15 +27,13 @@ import uk.gov.hmrc.apidocumentation.models.APIAccessType.APIAccessType
 import uk.gov.hmrc.apidocumentation.models.{Developer, _}
 import uk.gov.hmrc.apidocumentation.services.{ApiDefinitionService, DocumentationService}
 import uk.gov.hmrc.http.HeaderCarrier
-import uk.gov.hmrc.play.test.UnitSpec
 import unit.uk.gov.hmrc.apidocumentation.utils.ApiDefinitionTestDataHelper
+import unit.uk.gov.hmrc.apidocumentation.utils.AsyncApiPlatformSpec
 
 import scala.concurrent.{ExecutionContext, Future}
 
 class ControllerCommonSetup
-  extends UnitSpec
-    with ScalaFutures
-    with MockitoSugar
+  extends AsyncApiPlatformSpec
     with ApiDefinitionTestDataHelper {
 
   implicit val request = FakeRequest()

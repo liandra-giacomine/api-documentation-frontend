@@ -112,7 +112,7 @@ lazy val testScopes = "test"
 lazy val test = Seq(
   "io.cucumber" %% "cucumber-scala" % "5.7.0" % testScopes,
   "io.cucumber" % "cucumber-junit" % "5.7.0" % testScopes,
-  "uk.gov.hmrc" %% "hmrctest" % "3.9.0-play-26" % testScopes,
+//  "uk.gov.hmrc" %% "hmrctest" % "3.9.0-play-26" % testScopes,
   "org.pegdown" % "pegdown" % "1.6.0" % testScopes,
   "com.typesafe.play" %% "play-test" % PlayVersion.current % testScopes,
   "org.scalatestplus.play" %% "scalatestplus-play" % "3.1.3" % testScopes,

@@ -20,15 +20,13 @@ import akka.actor.ActorSystem
 import akka.stream.{ActorMaterializer, Materializer}
 import org.mockito.Matchers.{any, eq => meq}
 import org.mockito.Mockito.{never, verify, when}
-import org.scalatestplus.mockito.MockitoSugar
 import play.api.mvc.{RequestHeader, Result, Session}
 import play.api.test.FakeRequest
 import uk.gov.hmrc.apidocumentation.SessionRedirectFilter
-import uk.gov.hmrc.play.test.UnitSpec
-
 import scala.concurrent.{ExecutionContext, Future}
+import unit.uk.gov.hmrc.apidocumentation.utils.AsyncApiPlatformSpec
 
-class FiltersSpec(implicit ec: ExecutionContext) extends UnitSpec with MockitoSugar {
+class FiltersSpec(implicit ec: ExecutionContext) extends AsyncApiPlatformSpec {
   trait Setup {
     implicit val sys = ActorSystem("FiltersSpec")
     implicit val mat: Materializer = ActorMaterializer()
