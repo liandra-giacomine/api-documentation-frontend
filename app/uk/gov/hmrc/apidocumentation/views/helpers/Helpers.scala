@@ -109,6 +109,7 @@ object AvailabilityPhrase {
 }
 
 object EndpointsAvailable {
+  // TODO - 4852
   def apply(availability: Option[APIAvailability]): String = availability match {
     case Some(APIAvailability(endpointsEnabled, access, _, authorised)) if endpointsEnabled => access.`type` match {
       case APIAccessType.PUBLIC => AvailabilityPhrase.yes
@@ -128,6 +129,7 @@ object ShowBaseURL {
 }
 
 object VersionDocsVisible {
+  // TODO - 4852
   def apply(availability: Option[VersionVisibility]): DocsVisibility = availability match {
     case Some(VersionVisibility(APIAccessType.PUBLIC, _, _, _)) => DocsVisibility.VISIBLE                     // PUBLIC
     case Some(VersionVisibility(APIAccessType.PRIVATE, true, true, _)) => DocsVisibility.VISIBLE              // PRIVATE, logged in, whitelisted (authorised)

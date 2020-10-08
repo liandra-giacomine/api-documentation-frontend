@@ -121,6 +121,7 @@ object APIAccess {
     APIAccess(accessType, Some(Seq.empty), Some(false))
   }
 
+  // TODO - 4852
   def build(config: Option[Configuration]): APIAccess = APIAccess(
     `type` = APIAccessType.PRIVATE,
     whitelistedApplicationIds = config.flatMap(_.getOptional[Seq[String]]("whitelistedApplicationIds")).orElse(Some(Seq.empty)),

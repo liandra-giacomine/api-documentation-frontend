@@ -70,6 +70,8 @@ class CommonControllerBaseSpec
                             loggedIn: Boolean,
                             authorised: Boolean,
                             isTrial: Option[Boolean] = None): ExtendedAPIDefinition = {
+
+    // TODO - 4852
     ExtendedAPIDefinition(serviceName, "Hello World", "Say Hello World", "hello", requiresTrust = false, isTestSupport = false,
       Seq(
         ExtendedAPIVersion(version, APIStatus.STABLE, Seq(Endpoint(endpointName, "/world", HttpMethod.GET, None)),

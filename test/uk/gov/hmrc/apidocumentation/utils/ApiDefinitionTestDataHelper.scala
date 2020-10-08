@@ -24,6 +24,7 @@ trait ApiDefinitionTestDataHelper {
     APIDefinition(name, name, name, name, None, None, versions)
   }
 
+  // TODO - 4852
   def apiAccess() = {
     APIAccess(
       `type` = APIAccessType.PUBLIC,
@@ -47,6 +48,7 @@ trait ApiDefinitionTestDataHelper {
     }
   }
 
+  // TODO - 4852
   def apiAvailability() = {
     APIAvailability(
       endpointsEnabled = true,

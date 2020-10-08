@@ -37,10 +37,9 @@ import scala.concurrent.{ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}
 import uk.gov.hmrc.apidocumentation.connectors.RamlPreviewConnector
 import scala.util.control.NonFatal
-import uk.gov.hmrc.apidocumentation.controllers.ApiDocumentationController.RamlParseException
 
 object ApiDocumentationController {
-    case class RamlParseException(msg: String) extends RuntimeException(msg)
+    case class RamlPreviewException(msg: String) extends RuntimeException(msg)
 }
 @Singleton
 class ApiDocumentationController @Inject()(
@@ -191,6 +190,7 @@ class ApiDocumentationController @Inject()(
       }
     }
 
+    // TODO - 4852
     findVersion(apiOption) match {
       case Some((api, selectedVersion, VersionVisibility(_, _, true, _))) if selectedVersion.status == APIStatus.RETIRED =>
         renderRetiredVersionJumpPage(api, selectedVersion)
@@ -214,7 +214,7 @@ class ApiDocumentationController @Inject()(
         val page = (result: Try[Option[ViewModel]]) => previewDocumentationView(pageAttributes, url, result)
 
         url match {
-          case Some("") => Future.successful(InternalServerError(page(Failure(RamlParseException("No URL supplied")))))
+          case Some("") => Future.successful(InternalServerError(page(Failure(ApiDocumentationController.RamlPreviewException("No URL supplied")))))
           case None => Future.successful(Ok(page(Success(None))))
           case Some(url) =>
             ramlPreviewConnector.fetchPreviewApiSpecification(url)

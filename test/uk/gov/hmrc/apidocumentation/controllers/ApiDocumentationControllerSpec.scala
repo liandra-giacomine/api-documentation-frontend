@@ -33,7 +33,6 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future.failed
 import uk.gov.hmrc.apidocumentation.models.apispecification.{ApiSpecification, DocumentationItem, ResourceGroup, TypeDeclaration}
 import uk.gov.hmrc.apidocumentation.connectors.RamlPreviewConnector
-import uk.gov.hmrc.apidocumentation.controllers.ApiDocumentationController.RamlParseException
 
 class ApiDocumentationControllerSpec extends CommonControllerBaseSpec with PageRenderVerification with ApiDefinitionTestDataHelper {
   trait Setup
@@ -73,7 +72,6 @@ class ApiDocumentationControllerSpec extends CommonControllerBaseSpec with PageR
   }
 
   trait DocumentationRenderVersionSetup extends Setup {
-    when(appConfig.documentationRenderVersion).thenReturn("specification")
     val mockApiSpecification =
       ApiSpecification(
         title = "mockTitle",
@@ -461,8 +459,10 @@ class ApiDocumentationControllerSpec extends CommonControllerBaseSpec with PageR
       }
 
       "render 500 page when service throws exception" in new Setup with RamlPreviewEnabled {
+        import uk.gov.hmrc.apidocumentation.controllers.ApiDocumentationController.RamlPreviewException
+
         val url = "http://host:port/some.path.to.a.raml.document"
-        when(ramlPreviewConnector.fetchPreviewApiSpecification(any())(any())).thenReturn(failed(RamlParseException("Expected unit test failure")))
+        when(ramlPreviewConnector.fetchPreviewApiSpecification(any())(any())).thenReturn(failed(RamlPreviewException("Expected unit test failure")))
         val result = underTest.previewApiDocumentation(Some(url))(request)
         verifyErrorPageRendered(expectedStatus = INTERNAL_SERVER_ERROR, expectedError = "Expected unit test failure")(result)
       }
